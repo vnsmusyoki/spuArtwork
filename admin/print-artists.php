@@ -129,12 +129,13 @@
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
+                                    <th>Avatar</th>
                                     <th class="table-plus datatable-nosort">Name</th>
+
                                     <th>Email Address</th>
                                     <th>Residence</th>
                                     <th>Description</th>
                                     <th>Username</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,6 +150,7 @@
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
                                         $aid = $fetch['artist_id'];
+                                        $image = $fetch['artist_image'];
                                         $name = $fetch['artist_name'];
                                         $emailaddress = $fetch['artist_email'];
                                         $description = $fetch['artist_desc'];
@@ -165,15 +167,13 @@
 
                                         echo "
                                 <tr>
+                                <td><img src='../artists/$image' alt='user' class='img-circle'></td>
                                     <td class='table-plus'>$name</td>
                                     <td>$emailaddress</td>
                                     <td>$location</td>
                                     <td>$description </td> 
                                     <td>$username</td>
-                                    <td>
-                                    <a href='edit-artist.php?artist=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-artist.php?artist=$aid' class='btn btn-sm btn-danger'>Delete</a>
-                                    </td>
+                                     
                                 </tr>";
                                     }
                                 }

@@ -22,10 +22,8 @@
     <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 
-    <!-- <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/toastr.min.css">
@@ -33,6 +31,7 @@
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/toastr.min.js"></script>
     <script src="assets/js/toastr-options.js"></script>
+
 </head>
 
 <body>
