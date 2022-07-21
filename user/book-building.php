@@ -1,5 +1,5 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $building_charges = $building_name = $location = ''; ?>
+<?php echo $message = $description = $building_charges = $building_name = $location = $transaction_code=''; ?>
 <?php
 include '../db-conection.php';
 $id = $_GET['building'];
@@ -41,57 +41,74 @@ if ($bookingsplansrows >= 1) {
 
                 <form style="background-color:white; padding:20px;" method="POST" action=""
                     enctype="multipart/form-data">
-                    <?php
 
-                    if (isset($_POST["registerartist"])) {
-
-                        require 'functions/edit-building-validation.php';
-                    }
-                    ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Building </h3>
+                        <h3>Book Building rentals</h3>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Building Registration</label>
                         <div class="col-sm-12 col-md-10">
                             <input class="form-control" type="text" placeholder="Building Name" name="building_name"
-                                value="<?php echo $building_name; ?>">
+                                value="<?php echo $building_name; ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Rent Charges</label>
                         <div class="col-sm-12 col-md-10">
                             <input class="form-control" type="number" min="100" placeholder="8000"
-                                name="building_charges" value="<?php echo $building_charges; ?>">
+                                name="building_charges" value="<?php echo $building_charges; ?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Building Image</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Location</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="file" name="building_image"
-                                value="<?php echo $building_image; ?>">
+                            <textarea name="location" id="" cols="3" rows="3" class="form-control"
+                                readonly><?php echo $location; ?></textarea>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Decription</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea name="description" id="" cols="1" rows="1" class="form-control"
+                                readonly><?php echo $description; ?></textarea>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <?php
+
+                    if (isset($_POST["registerartist"])) {
+
+                        require 'functions/add-transactions-validation.php';
+                    }
+                    ?>
+                    <?php echo $message; ?>
+                    <div class="mt-4 mb-4">
+                        <h3>SUbmit Payment Details</h3>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Building Agent</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Amount</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="building_agent" id="" class="form-control">
+                            <input class="form-control" type="number" min="100" placeholder="Amount Paid"
+                                name="amount_paid" value="<?php echo $amount_paid; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Code</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="POLKSHDKDKSNKDN"
+                                name="transaction_code" value="<?php echo $transaction_code; ?>">
+                        </div>
+                    </div>
+                    <input type="hidden" name="building" value="<?php echo $_GET['building'];?>">
+                    <div class=" form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Mode</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select name="payment_mode" id="" class="form-control">
                                 <option value="">click to select</option>
-                                <?php
-                                include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `agent`";
-                                $querybookingsplans = mysqli_query($conn, $bookingplans);
-                                $bookingsplansrows = mysqli_num_rows($querybookingsplans);
-                                if ($bookingsplansrows >= 1) {
-                                    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['agent_id'];
-                                        $name = $fetch['agent_full_names'];
-                                        echo "<option value='$aid'>$name</option>";
-                                    }
-                                }
-                                ?>
+                                <option value="M-Pesa">M-Pesa</option>
                             </select>
 
                         </div>
@@ -99,26 +116,13 @@ if ($bookingsplansrows >= 1) {
 
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Building Location</label>
-                        <div class="col-sm-12 col-md-10">
-                            <textarea name="location" id="" cols="3" rows="3"
-                                class="form-control"><?php echo $location; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Building Decription</label>
-                        <div class="col-sm-12 col-md-10">
-                            <textarea name="description" id="" cols="1" rows="1"
-                                class="form-control"><?php echo $description; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-danger">Edit Building Details
+                            <button type="submit" name="registerartist" class="btn btn-success">Add To Transactions
                             </button>
                         </div>
                     </div>
+
 
                 </form>
 

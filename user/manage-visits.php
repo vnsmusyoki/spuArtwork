@@ -5,7 +5,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>Admin Dashboard</title>
+    <title>User Dashboard</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png">
@@ -75,7 +75,7 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="index.php">
-                <h4>Admin Dashboard</h4>
+                <h4>User Dashboard</h4>
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -114,7 +114,7 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `book_visits`";
+                                $bookingplans = "SELECT * FROM `book_visits` WHERE  `visit_user_id` = '$memberid'";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {

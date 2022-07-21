@@ -23,7 +23,7 @@
                                         ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Artist Category</h3>
+                        <h3>Add Upcoming Visit</h3>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Visit date</label>
@@ -33,28 +33,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">User Visiting</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select name="visitor_name" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <?php
-                                include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `user`";
-                                $querybookingsplans = mysqli_query($conn, $bookingplans);
-                                $bookingsplansrows = mysqli_num_rows($querybookingsplans);
-                                if ($bookingsplansrows >= 1) {
-                                    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['user_id'];
-                                        $name = $fetch['user_full_names']; 
-                                        echo "<option value='$aid'>$name</option>";
-                                    }
-                                } 
-                                ?>
-                            </select>
 
-                        </div>
-                    </div>
+                    <input type="hidden" name="visitor_name" value="<?php echo $memberid; ?>">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Building Name</label>
                         <div class="col-sm-12 col-md-10">
@@ -82,7 +62,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-success">Register Visitor
+                            <button type="submit" name="registerartist" class="btn btn-success">Book Visit
                             </button>
                         </div>
                     </div>

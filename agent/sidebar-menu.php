@@ -63,7 +63,7 @@
             </a>
         </li>
         <li>
-            <a href="invoice.php" class="dropdown-toggle no-arrow">
+            <a href="logout.php" class="dropdown-toggle no-arrow">
                 <span class="micon dw dw-invoice"></span><span class="mtext">Log Out</span>
             </a>
         </li>

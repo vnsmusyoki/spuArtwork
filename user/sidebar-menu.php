@@ -14,12 +14,11 @@
                 <span class="micon dw dw-apartment"></span><span class="mtext"> Buildings</span>
             </a>
             <ul class="submenu">
-                <li><a href="add-building.php">Add Building</a></li>
-                <li><a href="manage-buildings.php">Manage Buildings</a></li>
+                <li><a href="manage-buildings.php">Book Buildings</a></li>
                 <li><a href="print-buildings.php">Generate Report</a></li>
             </ul>
         </li>
-        <!-- <li class="dropdown">
+        <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
                 <span class="micon dw dw-paint-brush"></span><span class="mtext">Visits</span>
             </a>
@@ -30,7 +29,7 @@
             </ul>
         </li>
 
-        <li class="dropdown">
+        <!-- <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
                 <span class="micon dw dw-right-arrow1"></span><span class="mtext">Users</span>
             </a>
@@ -63,7 +62,7 @@
             </a>
         </li>
         <li>
-            <a href="invoice.php" class="dropdown-toggle no-arrow">
+            <a href="logout.php" class="dropdown-toggle no-arrow">
                 <span class="micon dw dw-invoice"></span><span class="mtext">Log Out</span>
             </a>
         </li>

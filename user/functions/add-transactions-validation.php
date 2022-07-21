@@ -3,13 +3,12 @@ include '../db-conection.php';
 
 $amount = mysqli_real_escape_string($conn, $_POST['amount_paid']);
 $transactioncode = mysqli_real_escape_string($conn, $_POST['transaction_code']);
-$building = mysqli_real_escape_string($conn, $_POST['building_selected']);
-$customer = mysqli_real_escape_string($conn, $_POST['user_name']);
+$building = mysqli_real_escape_string($conn, $_POST['building']); 
 $paymentmode = mysqli_real_escape_string($conn, $_POST['payment_mode']);
 
 $transcodelength = strlen($transactioncode);
 if (
-    empty($amount) || empty($transactioncode) || empty($building) || empty($customer) || empty($paymentmode)
+    empty($amount) || empty($transactioncode) || empty($building) || empty($paymentmode)
 ) {
     $message = "
 <script>
@@ -39,7 +38,7 @@ toastr.error('Amount paid has incorrect format');
     </script>";
     } else {
 
-    $sql = "INSERT INTO `payment`(`payment_amount`, `payment_mode`, `payment_code`,`payment_building_id`, `payment_user_id`) VALUES ('$amount','$paymentmode','$transactioncode','$building', '$customer')";
+    $sql = "INSERT INTO `payment`(`payment_amount`, `payment_mode`, `payment_code`,`payment_building_id`, `payment_user_id`) VALUES ('$amount','$paymentmode','$transactioncode','$building', '$memberid')";
     $result = mysqli_query($conn, $sql);
     
     if ($result) {
@@ -49,7 +48,7 @@ toastr.error('Amount paid has incorrect format');
                                         toastr.success('Registration Successful. Please login to continue.');
                                         </script>";
         echo "<script>
-                                    window.location.replace('manage-payments.php');
+                                    window.location.replace('index.php');
                                     </script>";
     } else {
         $message = "

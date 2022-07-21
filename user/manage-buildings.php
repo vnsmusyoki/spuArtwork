@@ -149,8 +149,7 @@
                                     <td>$agentname</td>
                                     <td>$agentphone</td>
                                     <td>
-                                    <a href='edit-building.php?building=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-building.php?building=$aid' class='btn btn-sm btn-danger'>Delete</a>
+                                    <a href='book-building.php?building=$aid' class='btn btn-sm btn-warning'>Book Now</a> 
                                     </td>
                                 </tr>";
                                     }

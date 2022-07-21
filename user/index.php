@@ -89,7 +89,7 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="index.php">
-            <h4>Admin Dashboard</h4>
+            <h4>User Dashboard</h4>
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-8">
                     <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                        Welcome back Agent - <div class="weight-600 font-30 text-blue"><?php echo $globalmembername; ?>!
+                        Welcome back User - <div class="weight-600 font-30 text-blue"><?php echo $globalmembername; ?>!
                         </div>
                     </h4>
                     <p class="font-18 max-width-600">You are in control of every building linked to you in the
@@ -123,60 +123,68 @@
 
 
         <div class="card-box mb-30">
-            <h2 class="h4 pd-20">Registred Admin Accounts</h2>
+            <h2 class="h4 pd-20">Booked Rooms</h2>
             <table class="table hover multiple-select-row data-table-export nowrap">
                 <thead>
                     <tr>
-                        <th class="table-plus datatable-nosort">Image</th>
-                        <th>Building</th>
-                        <th>Rent</th>
-                        <th>Location</th>
-                        <th>Description</th>
-                        <th>Agent</th>
+                        <th class="table-plus datatable-nosort">User</th>
                         <th>Phone Number</th>
+                        <th>Building</th>
+                        <th>Location</th>
+                        <th>Amount Paid</th>
+                        <th>Date Paid</th>
+                        <th>Transacode Code</th>
+
                     </tr>
                 </thead>
                 <tbody>
-
-
-
                     <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `building` WHERE `building_agent_id`='$memberid'";
+                                $bookingplans = "SELECT * FROM `payment` WHERE  `payment_user_id` = '$memberid'";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['buidling_id'];
-                                        $name = $fetch['building_name'];
-                                        $description = $fetch['buidling_description'];
-                                        $rent = $fetch['building_rent'];
-                                        $images = $fetch['building_images'];
-                                        $location = $fetch['building_location'];
-                                        $agentid = $fetch['building_agent_id'];
-                                        $usernames = "SELECT * FROM `agent` WHERE `agent_id` = '$agentid'";
+                                        $aid = $fetch['payment_id'];
+                                        $date = $fetch['payment_date'];
+                                        $buildid = $fetch['payment_building_id'];
+                                        $userid = $fetch['payment_user_id']; 
+                                        $amount = $fetch['payment_amount'];
+                                        $transacode = $fetch['payment_code'];
+                                        $paymentmethod = $fetch['payment_mode'];
+                                        $usernames = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $agentname = $fetchusernames['agent_full_names'];
-                                                $agentphone = $fetchusernames['agent_phone_number'];
+                                                $username = $fetchusernames['user_full_names'];
+                                                $userphone = $fetchusernames['user_phone_number'];
+                                                $useridnumber = $fetchusernames['user_id_number'];
+                                            }
+                                        }
+                                        $buuildingcheck = "SELECT * FROM `building` WHERE `buidling_id` = '$buildid'";
+                                        $querybuildingscheck = mysqli_query($conn, $buuildingcheck);
+                                        $buildingscheckrows = mysqli_num_rows($querybuildingscheck);
+                                        if ($buildingscheckrows >= 1) {
+                                            while ($fetchbuilding = mysqli_fetch_assoc($querybuildingscheck)) {
+                                                $buildingname = $fetchbuilding['building_name'];
+                                                $location = $fetchbuilding['building_location'];
+                                                $rent = $fetchbuilding['building_rent'];
                                             }
                                         }
                                         
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>
-                                    <img src='../buildings/$images' alt='Building' class='img-fluid' style='width:100px;height:100px;'>
-                                    </td>
-                                    <td>$name</td>
-                                    <td>Kshs. $rent</td>
-                                    <td>$location </td> 
-                                    <td>$description</td> 
-                                    <td>$agentname</td>
-                                    <td>$agentphone</td>
-                                    
+                                    <td class='table-plus'>$username
+                                       </td>
+                                    <td>$userphone</td> 
+                                    <td>$buildingname </td> 
+                                    <td>$location</td> 
+                                    <td>Kshs. $amount</td>
+                                    <td>$date</td> 
+                                    <td style='text-transform:uppercase;'>$transacode</td> 
+                                   
                                 </tr>";
                                     }
                                 }

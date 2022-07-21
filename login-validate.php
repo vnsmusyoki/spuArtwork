@@ -17,9 +17,9 @@ if (empty($username) || empty($password)) {
     if ($checkemailrows >= 1) {
         while ($fetch = mysqli_fetch_assoc($queryemail)) {
             $dbpassword = $fetch['login_password'];
-            $dbmember = $fetch['login_member_id'];
+            $dbmember = $fetch['login_agent_id'];
             $dbadmin = $fetch['login_admin_id'];
-            $dbinstructor = $fetch['login_instructor_id'];
+            $dbinstructor = $fetch['login_user_id'];
             $category = $fetch['login_rank'];
             $password = md5($password);
             if ($password !== $dbpassword) {
@@ -36,7 +36,7 @@ if (empty($username) || empty($password)) {
                 } else  if ($category == "user") {
 
                     $_SESSION['user'] = $username;
-                    echo "<script>window.location.replace('dashboards/member/dashboard.php');</script>";
+                    echo "<script>window.location.replace('user/index.php');</script>";
                 } else {
 
                     $_SESSION['admin'] = $username;
