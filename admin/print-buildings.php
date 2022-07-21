@@ -1,3 +1,4 @@
+<?php include 'admin-account.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -89,7 +90,7 @@
                         <span class="user-icon">
                             <img src="vendors/images/photo1.jpg" alt="">
                         </span>
-                        <span class="user-name">Ross C. Lopez</span>
+                        <span class="user-name"><?php echo $globalmembername; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                         <a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Username</a>
@@ -106,8 +107,7 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="index.php">
-                <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-                <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+                <h4>Admin Dashboard</h4>
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>

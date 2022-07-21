@@ -1,3 +1,4 @@
+<?php include 'admin-account.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -49,19 +50,18 @@
                     </a>
                 </div>
             </div>
-
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
                             <img src="vendors/images/photo1.jpg" alt="">
                         </span>
-                        <span class="user-name">Ross C. Lopez</span>
+                        <span class="user-name"><?php echo $globalmembername; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Username</a>
-                        <a class="dropdown-item" href="password.php"><i class="dw dw-settings2"></i> Password</a>
-                        <a class="dropdown-item" href="login.php"><i class="dw dw-logout"></i> Log Out</a>
+                        <a class="dropdown-item" href="update-username.php"><i class="dw dw-user1"></i> Username</a>
+                        <a class="dropdown-item" href="update-password.php"><i class="dw dw-settings2"></i> Password</a>
+                        <a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Log Out</a>
                     </div>
                 </div>
             </div>
@@ -73,8 +73,7 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="index.php">
-                <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-                <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+                <h4>Admin Dashboard</h4>
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>

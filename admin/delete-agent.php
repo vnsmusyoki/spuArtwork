@@ -3,7 +3,7 @@
 ?><?php
 include '../db-conection.php';
 $dietcheck = $_GET['agent'];
-$checkproduct = "DELETE  FROM `artist` WHERE `agent_id` = '$dietcheck'";
+$checkproduct = "DELETE  FROM `agent` WHERE `agent_id` = '$dietcheck'";
 $querycheckproduct = mysqli_query($conn, $checkproduct);
 if ($querycheckproduct) {
     echo "<script>window.location.replace('manage-agents.php');</script>";

@@ -1,128 +1,121 @@
+<?php
+session_start();
+$username = $message = '';
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inkd. - Responsive html template for tattoo artists</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Montserrat:400,700'
-        rel='stylesheet' type='text/css'>
+    <title>Account DashboardAccess</title>
+
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="admin/vendors/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="admin/vendors/images/favicon-16x16.png">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/icon-font.min.css">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="admin/assets/css/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="admin/assets/css/toastr-btn.css">
+    <script src="admin/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="admin/assets/js/toastr.min.js"></script>
+    <script src="admin/assets/js/toastr-options.js"></script>
+
 
 </head>
 
-<body>
-
-
-
-    <div class="navigation">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 navbar navbar-default" role="navigation">
-                    <div class="logo">
-                        <a href="#" title="Inkd." class="navbar-brand">Inkd<span>.</span></a>
-                    </div>
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="index.php" title="Home">
-                                    <span data-hover="Home">Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#about" title="About">
-                                    <span data-hover="About">About</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#portfolio" title="Portfolio">
-                                    <span data-hover="Portfolio">Portfolio</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#prices" title="Prices">
-                                    <span data-hover="Prices">Prices</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#contact" title="Contact">
-                                    <span data-hover="Contact">Contact</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login.php" title="Blog">
-                                    <span data-hover="Login">Login</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="index.php">
+                    <h4>Real Estate Management</h4>
+                </a>
+            </div>
+            <div class="login-menu">
+                <ul>
+                    <li><a href="register.php">Register</a></li>
+                </ul>
             </div>
         </div>
     </div>
-
-
-    <div id="contact" class="waypoint">
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Welcome</h3>
-
-                    <form role="form" id="contact_form">
-                        <div class="form-group">
-                            <label for="InputName">Name <span>*</span></label>
-                            <input type="text" class="form-control" id="InputName">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="admin/vendors/images/login-page-img.png" alt="">
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <div class="login-title">
+                            <h2 class="text-center text-primary">Login To My Account</h2>
                         </div>
-                        <div class="form-group">
-                            <label for="InputEmail">Email <span>*</span></label>
-                            <input type="email" class="form-control" id="InputEmail">
-                        </div>
+                        <form class="pt-3" method="POST" action="">
+                            <?php
 
-                        <button type="submit" class="btn btn-default btn-green">Sign In to My Account</button>
-                    </form>
+                            if (isset($_POST["loginaccount"])) {
+
+                                require 'login-validate.php';
+                            }
+                            ?>
+                            <?php echo $message; ?>
+                            <div class="select-role">
+
+                            </div>
+                            <div class="input-group custom">
+                                <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                    name="username">
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+                                </div>
+                            </div>
+                            <div class="input-group custom">
+                                <input type="password" class="form-control form-control-lg" placeholder="**********"
+                                    name="password">
+                                <div class="input-group-append custom">
+                                    <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="input-group mb-0">
+
+                                        <button type="submit" name="loginaccount"
+                                            class="btn btn-primary btn-lg btn-block">Sign In</button>
+                                    </div>
+                                    <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR
+                                    </div>
+                                    <div class="input-group mb-0">
+                                        <a class="btn btn-outline-primary btn-lg btn-block" href="register.php">Register
+                                            To Create Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>&copy; 2014 All rights reserved. Inkd.<br />
-                        <a href="#hero" title="Back to top">Back to top</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="js/jQuery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/waypoints-sticky.min.js"></script>
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="js/gmap3.min.js"></script>
-    <script src="js/jquery.queryloader2.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jqueryUI.custom.min.js"></script>
-    <script src="js/timePicker.js"></script>
-    <script src="js/custom.js"></script>
+    <!-- js -->
+    <script src="admin/vendors/scripts/core.js"></script>
+    <script src="admin/vendors/scripts/script.min.js"></script>
+    <script src="admin/vendors/scripts/process.js"></script>
+    <script src="admin/vendors/scripts/layout-settings.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php include 'admin-account.php';?>
+<?php include 'admin-account.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -51,7 +51,6 @@
                 </div>
             </div>
 
-
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -75,7 +74,7 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="index.php">
-                <h4>Admin Dashboard</h4>
+                <h4>Admin Dashboard </h4>
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -92,20 +91,17 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Buildings</h4>
+                        <h4 class="text-blue h4">All Registered Admin Accounts</h4>
                     </div>
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table class="table hover multiple-select-row data-table-export nowrap table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Image</th>
-                                    <th>Building</th>
-                                    <th>Rent</th>
-                                    <th>Location</th>
-                                    <th>Description</th>
-                                    <th>Agent</th>
+                                    <th class="table-plus datatable-nosort">Name</th>
+                                    <th>Email Address</th>
+                                    <th>Gender</th>
                                     <th>Phone Number</th>
-                                    <th>Actions</th>
+                                    <th>Username</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,49 +110,38 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `building`";
+                                $bookingplans = "SELECT * FROM `admin`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['buidling_id'];
-                                        $name = $fetch['building_name'];
-                                        $description = $fetch['buidling_description'];
-                                        $rent = $fetch['building_rent'];
-                                        $images = $fetch['building_images'];
-                                        $location = $fetch['building_location'];
-                                        $agentid = $fetch['building_agent_id'];
-                                        $usernames = "SELECT * FROM `agent` WHERE `agent_id` = '$agentid'";
+                                        $aid = $fetch['admin_id'];
+                                        $name = $fetch['admin_full_name'];
+                                        $emailaddress = $fetch['admin_email'];
+                                        $phone = $fetch['admin_mobile'];
+                                        $gender = $fetch['admin_gender']; 
+
+                                        $usernames = "SELECT * FROM `login` WHERE `login_admin_id` = '$aid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $agentname = $fetchusernames['agent_full_names'];
-                                                $agentphone = $fetchusernames['agent_phone_number'];
+                                                $username = $fetchusernames['login_username'];
                                             }
                                         }
-                                        
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>
-                                    <img src='../buildings/$images' alt='Building' class='img-fluid' style='width:100px;height:100px;'>
-                                    </td>
-                                    <td>$name</td>
-                                    <td>Kshs. $rent</td>
-                                    <td>$location </td> 
-                                    <td>$description</td> 
-                                    <td>$agentname</td>
-                                    <td>$agentphone</td>
-                                    <td>
-                                    <a href='edit-building.php?building=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-building.php?building=$aid' class='btn btn-sm btn-danger'>Delete</a>
-                                    </td>
+                                    <td class='table-plus'>$name</td>
+                                    <td>$emailaddress</td> 
+                                    <td>$gender </td> 
+                                    <td>$phone</td>
+                                    <td>$username</td>
+                                    
                                 </tr>";
                                     }
                                 }
                                 ?>
-
                             </tbody>
                         </table>
                     </div>

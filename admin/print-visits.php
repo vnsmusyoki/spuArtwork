@@ -1,11 +1,11 @@
-<?php include 'admin-account.php';?>
+<?php include 'admin-account.php'; ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>Admin Dashboard</title>
+    <title>DeskApp Dashboard</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png">
@@ -39,7 +39,40 @@
             <div class="menu-icon dw dw-menu"></div>
             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
             <div class="header-search">
-
+                <form>
+                    <div class="form-group mb-0">
+                        <i class="dw dw-search2 search-icon"></i>
+                        <input type="text" class="form-control search-input" placeholder="Search Here">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                                <i class="ion-arrow-down-c"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">From</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control form-control-sm form-control-line" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">To</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control form-control-sm form-control-line" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control form-control-sm form-control-line" type="text">
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="header-right">
@@ -68,15 +101,17 @@
                 </div>
             </div>
 
+
         </div>
     </div>
 
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.php">
+            <ah href="index.php">
+
                 <h4>Admin Dashboard</h4>
-            </a>
+            </ah>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
             </div>
@@ -92,20 +127,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Buildings</h4>
+                        <h4 class="text-blue h4">All Booked Visits</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Image</th>
-                                    <th>Building</th>
-                                    <th>Rent</th>
-                                    <th>Location</th>
-                                    <th>Description</th>
-                                    <th>Agent</th>
+                                    <th class="table-plus datatable-nosort">Visitor</th>
                                     <th>Phone Number</th>
-                                    <th>Actions</th>
+                                    <th>ID Number</th>
+                                    <th>Building</th>
+                                    <th>Location</th>
+                                    <th>Rent</th>
+                                    <th>Date Visiting</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,44 +148,48 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `building`";
+                                $bookingplans = "SELECT * FROM `book_visits`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['buidling_id'];
-                                        $name = $fetch['building_name'];
-                                        $description = $fetch['buidling_description'];
-                                        $rent = $fetch['building_rent'];
-                                        $images = $fetch['building_images'];
-                                        $location = $fetch['building_location'];
-                                        $agentid = $fetch['building_agent_id'];
-                                        $usernames = "SELECT * FROM `agent` WHERE `agent_id` = '$agentid'";
+                                        $aid = $fetch['visit_id'];
+                                        $date = $fetch['visit_date'];
+                                        $buildid = $fetch['visit_building_id'];
+                                        $userid = $fetch['visit_user_id']; 
+                                        $usernames = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $agentname = $fetchusernames['agent_full_names'];
-                                                $agentphone = $fetchusernames['agent_phone_number'];
+                                                $username = $fetchusernames['user_full_names'];
+                                                $userphone = $fetchusernames['user_phone_number'];
+                                                $useridnumber = $fetchusernames['user_id_number'];
+                                            }
+                                        }
+                                        $buuildingcheck = "SELECT * FROM `building` WHERE `buidling_id` = '$buildid'";
+                                        $querybuildingscheck = mysqli_query($conn, $buuildingcheck);
+                                        $buildingscheckrows = mysqli_num_rows($querybuildingscheck);
+                                        if ($buildingscheckrows >= 1) {
+                                            while ($fetchbuilding = mysqli_fetch_assoc($querybuildingscheck)) {
+                                                $buildingname = $fetchbuilding['building_name'];
+                                                $location = $fetchbuilding['building_location'];
+                                                $rent = $fetchbuilding['building_rent'];
                                             }
                                         }
                                         
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>
-                                    <img src='../buildings/$images' alt='Building' class='img-fluid' style='width:100px;height:100px;'>
-                                    </td>
-                                    <td>$name</td>
+                                    <td class='table-plus'>$username
+                                       </td>
+                                    <td>$userphone</td>
+                                    <td>$useridnumber</td>
+                                    <td>$buildingname </td> 
+                                    <td>$location</td> 
                                     <td>Kshs. $rent</td>
-                                    <td>$location </td> 
-                                    <td>$description</td> 
-                                    <td>$agentname</td>
-                                    <td>$agentphone</td>
-                                    <td>
-                                    <a href='edit-building.php?building=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-building.php?building=$aid' class='btn btn-sm btn-danger'>Delete</a>
-                                    </td>
+                                    <td>$date</td> 
+                                     
                                 </tr>";
                                     }
                                 }
@@ -166,7 +204,6 @@
 
         </div>
     </div>
-
     <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>

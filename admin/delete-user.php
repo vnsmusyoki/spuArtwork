@@ -2,7 +2,7 @@
 // require'admin-account.php';
 ?><?php
 include '../db-conection.php';
-$dietcheck = $_GET['artworkuser'];
+$dietcheck = $_GET['user'];
 $checkproduct = "DELETE  FROM `user` WHERE `user_id` = '$dietcheck'";
 $querycheckproduct = mysqli_query($conn, $checkproduct);
 if ($querycheckproduct) {
