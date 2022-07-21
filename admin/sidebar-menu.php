@@ -20,11 +20,12 @@
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-library"></span><span class="mtext">Tables</span>
+                <span class="micon dw dw-library"></span><span class="mtext">Art Categories</span>
             </a>
             <ul class="submenu">
-                <li><a href="basic-table.php">Basic Tables</a></li>
-                <li><a href="datatable.php">DataTables</a></li>
+                <li><a href="add-art-category.php">Add Category</a></li>
+                <li><a href="manage-art-categories.php">Manage Art Categories</a></li>
+                <li><a href="print-art-categories.php">Generate Report</a></li>
             </ul>
         </li>
         <li>
@@ -34,23 +35,12 @@
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-apartment"></span><span class="mtext"> UI Elements </span>
+                <span class="micon dw dw-apartment"></span><span class="mtext"> Art Work</span>
             </a>
             <ul class="submenu">
-                <li><a href="ui-buttons.php">Buttons</a></li>
-                <li><a href="ui-cards.php">Cards</a></li>
-                <li><a href="ui-cards-hover.php">Cards Hover</a></li>
-                <li><a href="ui-modals.php">Modals</a></li>
-                <li><a href="ui-tabs.php">Tabs</a></li>
-                <li><a href="ui-tooltip-popover.php">Tooltip &amp; Popover</a></li>
-                <li><a href="ui-sweet-alert.php">Sweet Alert</a></li>
-                <li><a href="ui-notification.php">Notification</a></li>
-                <li><a href="ui-timeline.php">Timeline</a></li>
-                <li><a href="ui-progressbar.php">Progressbar</a></li>
-                <li><a href="ui-typography.php">Typography</a></li>
-                <li><a href="ui-list-group.php">List group</a></li>
-                <li><a href="ui-range-slider.php">Range slider</a></li>
-                <li><a href="ui-carousel.php">Carousel</a></li>
+                <li><a href="add-artwork.php">Add ArtWork</a></li>
+                <li><a href="manage-artwork.php">Manage Art Work</a></li>
+                <li><a href="print-artwork.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
