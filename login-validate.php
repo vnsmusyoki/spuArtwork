@@ -32,7 +32,7 @@ if (empty($username) || empty($password)) {
                 if ($category == "agent") {
 
                     $_SESSION['agent'] = $username;
-                    echo "<script>window.location.replace('dashboards/instructor/dashboard.php');</script>";
+                    echo "<script>window.location.replace('agent/index.php');</script>";
                 } else  if ($category == "user") {
 
                     $_SESSION['user'] = $username;
