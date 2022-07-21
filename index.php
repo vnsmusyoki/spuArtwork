@@ -1,444 +1,336 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include'header.php';?>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inkd. - Responsive html template for tattoo artists</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Montserrat:400,700'
-        rel='stylesheet' type='text/css'>
+<div class="">
 
-</head>
 
-<body>
+    <div id="slider" class="sl-slider-wrapper">
 
-    <div id="hero" data-stellar-background-ratio=".5">
-        <div class="container">
-            <div class="logo">
-                <a href="#" title="Inkd.">Inkd<span>.</span></a>
+        <div class="sl-slider">
+
+            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25"
+                data-slice1-scale="2" data-slice2-scale="2">
+                <div class="sl-slide-inner">
+                    <div class="bg-img bg-img-1"></div>
+                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <blockquote>
+                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia
+                        </p>
+                        <p>Until he extends the circle of his compassion to all living things, man will not himself find
+                            peace.</p>
+                        <cite>$ 20,000,000</cite>
+                    </blockquote>
+                </div>
             </div>
-            <div class="col-md-12" data-stellar-ratio=".7" data-stellar-vertical-offset="100" style="top: auto;">
-                <h1>Creative artists</h1>
-                <h2>Lorem ipsum delor sit amet</h2>
-                <a href="#scroll_to" class="scroll" title="Scroll down">
-                    <img src="http://inkd.klevermedia.co.uk/wp-content/themes/Inkd/images/arrow.png" alt="">
-                </a>
+
+            <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15"
+                data-slice1-scale="1.5" data-slice2-scale="1.5">
+                <div class="sl-slide-inner">
+                    <div class="bg-img bg-img-2"></div>
+                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <blockquote>
+                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia
+                        </p>
+                        <p>Until he extends the circle of his compassion to all living things, man will not himself find
+                            peace.</p>
+                        <cite>$ 20,000,000</cite>
+                    </blockquote>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3"
+                data-slice1-scale="2" data-slice2-scale="1">
+                <div class="sl-slide-inner">
+                    <div class="bg-img bg-img-3"></div>
+                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <blockquote>
+                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia
+                        </p>
+                        <p>Until he extends the circle of his compassion to all living things, man will not himself find
+                            peace.</p>
+                        <cite>$ 20,000,000</cite>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25"
+                data-slice1-scale="2" data-slice2-scale="1">
+                <div class="sl-slide-inner">
+                    <div class="bg-img bg-img-4"></div>
+                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <blockquote>
+                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia
+                        </p>
+                        <p>Until he extends the circle of his compassion to all living things, man will not himself find
+                            peace.</p>
+                        <cite>Ksh. 20,000,000</cite>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10"
+                data-slice1-scale="2" data-slice2-scale="1">
+                <div class="sl-slide-inner">
+                    <div class="bg-img bg-img-5"></div>
+                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <blockquote>
+                        <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia
+                        </p>
+                        <p>Until he extends the circle of his compassion to all living things, man will not himself find
+                            peace.</p>
+                        <cite>Ksh. 800</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div><!-- /sl-slider -->
 
 
-    <div class="navigation">
-        <div class="container">
+
+        <nav id="nav-dots" class="nav-dots">
+            <span class="nav-dot-current"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </nav>
+
+    </div><!-- /slider-wrapper -->
+</div>
+
+
+
+<div class="banner-search">
+    <div class="container">
+        <!-- banner -->
+        <h3>Buy, Sale & Rent</h3>
+        <div class="searchbar">
             <div class="row">
-                <div class="col-md-12 navbar navbar-default" role="navigation">
-                    <div class="logo">
-                        <a href="#" title="Inkd." class="navbar-brand">Inkd<span>.</span></a>
-                    </div>
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="#hero" title="Home">
-                                    <span data-hover="Home">Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#about" title="About">
-                                    <span data-hover="About">About</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#portfolio" title="Portfolio">
-                                    <span data-hover="Portfolio">Portfolio</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#prices" title="Prices">
-                                    <span data-hover="Prices">Prices</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#contact" title="Contact">
-                                    <span data-hover="Contact">Contact</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login.php" title="Blog">
-                                    <span data-hover="Blog">Login</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col-lg-6 col-sm-6">
+
+
+
+                </div>
+                <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
+                    <p>Join now and get updated with all the properties deals.</p>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#loginpop">Login</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="about waypoint" id="about" data-stellar-background-ratio=".5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h3>Meet the team</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                        ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                        aliquip ex ea commodo consequat.</p>
+</div>
+<!-- banner -->
+<div class="container">
+    <div class="properties-listing spacer"> <a href="buysalerent.php" class="pull-right viewall">View All Listing</a>
+        <h2>Featured Properties</h2>
+        <div id="owl-example" class="owl-carousel">
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/1.jpg" class="img-responsive" alt="properties" />
+                    <div class="status sold">Sold</div>
                 </div>
-                <div class="col-md-3">
-                    <div class="team">
-                        <a href="#popup-1" title="" class="open-popup-link">
-                            <img src="images/team-1.png" alt="">
-                        </a>
-                        <h4>Ryder Wilson</h4>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/2.jpg" class="img-responsive" alt="properties" />
+                    <div class="status new">New</div>
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/3.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/4.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/1.jpg" class="img-responsive" alt="properties" />
+                    <div class="status sold">Sold</div>
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/2.jpg" class="img-responsive" alt="properties" />
+                    <div class="status sold">Sold</div>
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/3.jpg" class="img-responsive" alt="properties" />
+                    <div class="status new">New</div>
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/4.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/1.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/2.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
+            <div class="properties">
+                <div class="image-holder"><img src="images/properties/3.jpg" class="img-responsive" alt="properties" />
+                </div>
+                <h4><a href="property-detail.php">Royal Inn</a></h4>
+                <p class="price">Price: $234,900</p>
+                <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Kitchen">1</span> </div>
+                <a class="btn btn-primary" href="property-detail.php">View Details</a>
+            </div>
 
-                        <div id="popup-1" class="white-popup mfp-hide">
-                            <h3>About Ryder Wilson</h3>
-                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-                                litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo
-                                typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                                dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-                                facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet
-                                doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam;
-                                est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt
-                                lectores legere me lius quod ii legunt saepius.</p>
-                            <div class="social">
-                                <a href="#" title="Follow us on Twitter" class="twitter">Follow us on Twitter</a>
-                                <a href="#" title="Follow us on Pinterest" class="pinterest">Follow us on Pinterest</a>
+        </div>
+    </div>
+    <div class="spacer">
+        <div class="row">
+            <div class="col-lg-6 col-sm-9 recent-view">
+                <h3>About Us</h3>
+                <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+                    their exact original form, accompanied by English versions from the 1914 translation by H.
+                    Rackham.<br><a href="about.php">Learn More</a></p>
+
+            </div>
+            <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
+                <h3>Recommended Properties</h3>
+                <div id="myCarousel" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                    </ol>
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-lg-4"><img src="images/properties/1.jpg" class="img-responsive"
+                                        alt="properties" /></div>
+                                <div class="col-lg-8">
+                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
+                                    <p class="price">$300,000</p>
+                                    <a href="property-detail.php" class="more">More Detail</a>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="team">
-                        <a href="#popup-2" title="" class="open-popup-link">
-                            <img src="images/team-2.png" alt="">
-                        </a>
-                        <h4>Zane G</h4>
-
-                        <div id="popup-2" class="white-popup mfp-hide">
-                            <h3>About Zane G</h3>
-                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-                                litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo
-                                typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                                dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-                                facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet
-                                doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam;
-                                est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt
-                                lectores legere me lius quod ii legunt saepius.</p>
-                            <div class="social">
-                                <a href="#" title="Follow us on Twitter" class="twitter">Follow us on Twitter</a>
-                                <a href="#" title="Like us on Facebook" class="facebook">Like us on Facebook</a>
-                                <a href="#" title="Friend us on LinkedIn" class="linkedin">Friend us on LinkedIn</a>
-                                <a href="#" title="Follow us on Pinterest" class="pinterest">Follow us on Pinterest</a>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-lg-4"><img src="images/properties/2.jpg" class="img-responsive"
+                                        alt="properties" /></div>
+                                <div class="col-lg-8">
+                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
+                                    <p class="price">$300,000</p>
+                                    <a href="property-detail.php" class="more">More Detail</a>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="team">
-                        <a href="#popup-3" title="" class="open-popup-link">
-                            <img src="images/team-3.png" alt="">
-                        </a>
-                        <h4>Myles Tate</h4>
-
-                        <div id="popup-3" class="white-popup mfp-hide">
-                            <h3>About Myles Tate</h3>
-                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-                                litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo
-                                typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-                                vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-                                dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
-                                facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet
-                                doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam;
-                                est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt
-                                lectores legere me lius quod ii legunt saepius.</p>
-                            <div class="social">
-                                <a href="#" title="Follow us on Twitter" class="twitter">Follow us on Twitter</a>
-                                <a href="#" title="Like us on Facebook" class="facebook">Like us on Facebook</a>
-                                <a href="#" title="Follow us on Pinterest" class="pinterest">Follow us on Pinterest</a>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-lg-4"><img src="images/properties/3.jpg" class="img-responsive"
+                                        alt="properties" /></div>
+                                <div class="col-lg-8">
+                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
+                                    <p class="price">$300,000</p>
+                                    <a href="property-detail.php" class="more">More Detail</a>
+                                </div>
                             </div>
                         </div>
-
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-lg-4"><img src="images/properties/4.jpg" class="img-responsive"
+                                        alt="properties" /></div>
+                                <div class="col-lg-8">
+                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
+                                    <p class="price">$300,000</p>
+                                    <a href="property-detail.php" class="more">More Detail</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="quote" data-stellar-background-ratio=".1">
-        <div class="container">
-            <h5>So you want a tattoo?</h5>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat.</p>
-            <form method="get" action="index.html">
-                <a href="#contact" class="btn btn-default">Share with us</a>
-            </form>
-        </div>
-    </div>
-
-
-    <div class="portfolio waypoint" id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h3>Our work</h3>
-                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est
-                        notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
-                        humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur
-                        parum clari, fiant sollemnes in futurum.</p>
-                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                        aliquip ex ea commodo consequat.</p>
-                </div>
-            </div>
-        </div>
-        <div class="gallery">
-            <div class="work">
-                <a href="images/gallery-1.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-1.png" alt="" />
-                </a>
-            </div>
-            <div class="work">
-                <a href="images/gallery-2.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-2.png" alt="" />
-                </a>
-            </div>
-            <div class="work">
-                <a href="images/gallery-3.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-3.png" alt="" />
-                </a>
-            </div>
-            <div class="work">
-                <a href="images/gallery-4.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-4.png" alt="" />
-                </a>
-            </div>
-            <div class="work">
-                <a href="images/gallery-5.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-5.png" alt="" />
-                </a>
-            </div>
-            <div class="work">
-                <a href="images/gallery-6.png" title="Lorem ipsum delor sit amet">
-                    <img src="images/gallery-6.png" alt="" />
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="quote testimonial" data-stellar-background-ratio=".1">
-        <div class="container">
-            <h5>Our happy clients say</h5>
-            <p>&quot;Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                ut laoreet dolore magna aliquam erat volutpat.&quot;</p>
-            <form method="get" action="index.html">
-                <button type="submit" class="btn btn-default">Get in touch</button>
-            </form>
-        </div>
-    </div>
-
-
-    <div class="prices waypoint" id="prices" data-stellar-background-ratio=".5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h3>Prices</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-                        ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                        aliquip ex ea commodo consequat.</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="price" data-stellar-ratio="1.3">
-                        <h4>Ryder Wilson</h4>
-                        <p data-stellar-background-ratio=".8">&pound;70<span>ph</span></p>
-                        <a href="#popup-4" class="btn btn-default open-popup-link">
-                            Book now
-                        </a>
-
-                        <div id="popup-4" class="white-popup mfp-hide booking">
-                            <h3>Book Ryder Wilson</h3>
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="InputName">Name <span>*</span></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Email <span>*</span></label>
-                                    <input type="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Time and date <span>*</span></label>
-                                    <input type="text" class="form-control timedate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputMesaagel">Tattoo/Piercing idea? <span>*</span></label>
-                                    <textarea class="form-control" rows="2"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default btn-green">Confirm booking</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="price" data-stellar-ratio="1.3">
-                        <h4>Zane G</h4>
-                        <p data-stellar-background-ratio=".8">&pound;70<span>ph</span></p>
-                        <a href="#popup-5" class="btn btn-default open-popup-link">
-                            Book now
-                        </a>
-
-                        <div id="popup-5" class="white-popup mfp-hide booking">
-                            <h3>Book Zane G</h3>
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="InputName">Name <span>*</span></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Email <span>*</span></label>
-                                    <input type="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Time and date <span>*</span></label>
-                                    <input type="text" class="form-control timedate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputMesaagel">Tattoo/Piercing idea? <span>*</span></label>
-                                    <textarea class="form-control" rows="2"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default btn-green">Confirm booking</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="price" data-stellar-ratio="1.3">
-                        <h4>Myles Tate</h4>
-                        <p data-stellar-background-ratio=".8">&pound;60<span>ph</span></p>
-                        <a href="#popup-6" class="btn btn-default open-popup-link">
-                            Book now
-                        </a>
-
-                        <div id="popup-6" class="white-popup mfp-hide booking">
-                            <h3>Book Myles Tate</h3>
-                            <form role="form">
-                                <div class="form-group">
-                                    <label for="InputName">Name <span>*</span></label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Email <span>*</span></label>
-                                    <input type="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Time and date <span>*</span></label>
-                                    <input type="text" class="form-control timedate">
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputMesaagel">Tattoo/Piercing idea? <span>*</span></label>
-                                    <textarea class="form-control" rows="2"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default btn-green">Confirm booking</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="map"></div>
-
-
-    <div id="contact" class="waypoint">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Contact us</h3>
-                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est
-                        notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas
-                        humanitatis per seacula quarta decima et quinta decima. </p>
-                    <form role="form" id="contact_form">
-                        <div class="form-group">
-                            <label for="InputName">Name <span>*</span></label>
-                            <input type="text" class="form-control" id="InputName">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputEmail">Email <span>*</span></label>
-                            <input type="email" class="form-control" id="InputEmail">
-                        </div>
-                        <div class="form-group">
-                            <label for="InputMesaagel">Message <span>*</span></label>
-                            <textarea class="form-control" id="Message" rows="8"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-default btn-green">Send message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>&copy; 2014 All rights reserved. Inkd.<br />
-                        <a href="#hero" title="Back to top">Back to top</a>
-                    </p>
-                    <div class="social">
-                        <a href="#" title="Follow us on Twitter" class="twitter">Follow us on Twitter</a>
-                        <a href="#" title="Like us on Facebook" class="facebook">Like us on Facebook</a>
-                        <a href="#" title="Friend us on LinkedIn" class="linkedin">Friend us on LinkedIn</a>
-                        <a href="#" title="Follow us on Pinterest" class="pinterest">Follow us on Pinterest</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="js/jQuery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/waypoints-sticky.min.js"></script>
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="js/gmap3.min.js"></script>
-    <script src="js/jquery.queryloader2.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jqueryUI.custom.min.js"></script>
-    <script src="js/timePicker.js"></script>
-    <script src="js/custom.js"></script>
-</body>
-
-</html>
+</div>
+<?php include'footer.php';?>
