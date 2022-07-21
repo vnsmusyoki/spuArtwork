@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
 </head>
 
 <body>
@@ -123,7 +124,7 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Artists</h4>
+                        <h4 class="text-blue h4">Generate AGents Report</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
@@ -132,9 +133,9 @@
                                     <th class="table-plus datatable-nosort">Name</th>
                                     <th>Email Address</th>
                                     <th>Residence</th>
-                                    <th>Description</th>
+                                    <th>Gender</th>
+                                    <th>Phone Number</th>
                                     <th>Username</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,18 +144,19 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `artist`";
+                                $bookingplans = "SELECT * FROM `agent`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['artist_id'];
-                                        $name = $fetch['artist_name'];
-                                        $emailaddress = $fetch['artist_email'];
-                                        $description = $fetch['artist_desc'];
-                                        $location = $fetch['artist_location'];
+                                        $aid = $fetch['agent_id'];
+                                        $name = $fetch['agent_full_names'];
+                                        $emailaddress = $fetch['agent_email'];
+                                        $phone = $fetch['agent_phone_number'];
+                                        $gender = $fetch['agent_gender'];
+                                        $home = $fetch['agent_home_address'];
 
-                                        $usernames = "SELECT * FROM `login` WHERE `login_artist_id` = '$aid'";
+                                        $usernames = "SELECT * FROM `login` WHERE `login_agent_id` = '$aid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
@@ -167,18 +169,15 @@
                                 <tr>
                                     <td class='table-plus'>$name</td>
                                     <td>$emailaddress</td>
-                                    <td>$location</td>
-                                    <td>$description </td> 
+                                    <td>$home</td>
+                                    <td>$gender </td> 
+                                    <td>$phone</td>
                                     <td>$username</td>
-                                    <td>
-                                    <a href='edit-artist.php?artist=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-artist.php?artist=$aid' class='btn btn-sm btn-danger'>Delete</a>
-                                    </td>
+                                    
                                 </tr>";
                                     }
                                 }
                                 ?>
-
                             </tbody>
                         </table>
                     </div>
@@ -188,7 +187,7 @@
 
         </div>
     </div>
-    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
+
     <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>

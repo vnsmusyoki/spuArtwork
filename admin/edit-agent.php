@@ -1,5 +1,33 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $full_names = $residence = $password = $username = $email= $profile_pic=''; ?>
+<?php echo $message = $description = $full_names = $gender = $password = $username = $email = $phone_number = ''; ?>
+<?php
+include '../db-conection.php';
+$id = $_GET['agent'];
+$bookingplans = "SELECT * FROM `agent` WHERE `agent_id` = '$id'";
+$querybookingsplans = mysqli_query($conn, $bookingplans);
+$bookingsplansrows = mysqli_num_rows($querybookingsplans);
+if ($bookingsplansrows >= 1) {
+    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
+        $aid = $fetch['agent_id'];
+        $full_names = $fetch['agent_full_names'];
+        $email = $fetch['agent_email'];
+        $phone_number = $fetch['agent_phone_number'];
+        $description = $fetch['agent_home_address'];
+
+        $usernames = "SELECT * FROM `login` WHERE `login_agent_id` = '$aid'";
+        $queryusernames = mysqli_query($conn, $usernames);
+        $usernamesrows = mysqli_num_rows($queryusernames);
+        if ($usernamesrows >= 1) {
+            while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
+                $username = $fetchusernames['login_username'];
+                global $username;
+            }
+        }
+
+      global $full_names; global $email; global $phone_number; global $description; global $username;
+    }
+}
+?>
 <div class="left-side-bar">
 
     <div class="menu-block customscroll">
@@ -16,14 +44,14 @@
                     enctype="multipart/form-data">
                     <?php
 
-                                        if (isset($_POST["registerartist"])) {
+                if (isset($_POST["registerartist"])) {
 
-                                            require 'functions/add-artist-validation.php';
-                                        }
-                                        ?>
+                    require 'functions/edit-agent-validation.php';
+                }
+                ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Artist</h3>
+                        <h3>Add Agent</h3>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Full Names</label>
@@ -40,26 +68,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Residence</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Gender</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="Write the artist location here" type="text"
-                                name="residence" value="<?php echo $residence; ?>">
+                            <select name="gender" class="form-control" id="">
+                                <option value="">Click to Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
 
-
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Password</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Phone Number</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="password" type="password" name="password"
-                                value="<?php echo $password; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Avatar</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="upload image" type="file" name="profile_pic"
-                                value="<?php echo $profile_pic; ?>">
+                            <input class="form-control" placeholder="0788992233" type="number" name="phone_number"
+                                value="<?php echo $phone_number; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -71,7 +94,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Decription</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Home Address</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea name="description" id="" cols="3" rows="3"
                                 class="form-control"><?php echo $description; ?></textarea>
@@ -80,7 +103,8 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-success">Register Artist</button>
+                            <button type="submit" name="registerartist" class="btn btn-danger">Update New
+                                Agent</button>
                         </div>
                     </div>
 

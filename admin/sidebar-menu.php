@@ -10,12 +10,12 @@
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-edit2"></span><span class="mtext">Artist</span>
+                <span class="micon dw dw-edit2"></span><span class="mtext">Agents</span>
             </a>
             <ul class="submenu">
-                <li><a href="add-artist.php">Register Artist</a></li>
-                <li><a href="manage-artists.php">Manage Artists</a></li>
-                <li><a href="print-artists.php">Generate Report</a></li>
+                <li><a href="add-agent.php">Register Agent</a></li>
+                <li><a href="manage-agents.php">Manage Agents</a></li>
+                <li><a href="print-agents.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -55,24 +55,22 @@
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-analytics-21"></span><span class="mtext">Charts</span>
+                <span class="micon dw dw-analytics-21"></span><span class="mtext">Transactions</span>
             </a>
             <ul class="submenu">
-                <li><a href="highchart.php">Highchart</a></li>
-                <li><a href="knob-chart.php">jQuery Knob</a></li>
-                <li><a href="jvectormap.php">jvectormap</a></li>
-                <li><a href="apexcharts.php">Apexcharts</a></li>
+                <li><a href="add-transaction.php">Add Transaction</a></li>
+                <li><a href="manage-transactions.php">Manage transactions</a></li>
+                <li><a href="">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-right-arrow1"></span><span class="mtext">Additional Pages</span>
+                <span class="micon dw dw-right-arrow1"></span><span class="mtext">Users</span>
             </a>
             <ul class="submenu">
-                <li><a href="video-player.php">Video Player</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="forgot-password.php">Forgot Password</a></li>
-                <li><a href="reset-password.php">Reset Password</a></li>
+                <li><a href="add-user.php">Add User</a></li>
+                <li><a href="manage-users.php">Manage Users</a></li>
+                <li><a href="print-users.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
