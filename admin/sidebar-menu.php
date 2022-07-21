@@ -40,19 +40,17 @@
             <ul class="submenu">
                 <li><a href="add-artwork.php">Add ArtWork</a></li>
                 <li><a href="manage-artwork.php">Manage Art Work</a></li>
-                <li><a href="print-artwork.php">Generate Report</a></li>
+                <li><a href="print-artworks.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-paint-brush"></span><span class="mtext">Icons</span>
+                <span class="micon dw dw-paint-brush"></span><span class="mtext">CUstomers</span>
             </a>
             <ul class="submenu">
-                <li><a href="font-awesome.php">FontAwesome Icons</a></li>
-                <li><a href="foundation.php">Foundation Icons</a></li>
-                <li><a href="ionicons.php">Ionicons Icons</a></li>
-                <li><a href="themify.php">Themify Icons</a></li>
-                <li><a href="custom-icon.php">Custom Icons</a></li>
+                <li><a href="add-customer.php">Add Customer</a></li>
+                <li><a href="manage-customers.php">Manage Customers</a></li>
+                <li><a href="print-customers.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">

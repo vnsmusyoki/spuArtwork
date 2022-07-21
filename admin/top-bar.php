@@ -32,6 +32,8 @@
     <script src="assets/js/toastr.min.js"></script>
     <script src="assets/js/toastr-options.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
 </head>
 
 <body>

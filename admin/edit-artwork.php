@@ -1,5 +1,41 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $artwork_charges = $artwork_registration =$category_type= ''; ?>
+<?php echo $message = $description = $artwork_charges = $artwork_registration = $category_type = ''; ?>
+<?php
+include '../db-conection.php';
+$artworkid = $_GET['artwork'];
+$bookingplans = "SELECT * FROM `artwork` WHERE `artwork_id`='$artworkid'";
+$querybookingsplans = mysqli_query($conn, $bookingplans);
+$bookingsplansrows = mysqli_num_rows($querybookingsplans);
+if ($bookingsplansrows >= 1) {
+    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
+        $aid = $fetch['artwork_id'];
+        $artwork_registration = $fetch['artwork_reg'];
+        $type = $fetch['artwork_type'];
+        $artwork_charges = $fetch['artwork_charges'];
+        $description = $fetch['artwork_desc'];
+        $artcat = $fetch['artwork_cat_id'];
+        $artistid = $fetch['artwork_artist_id'];
+        $usernames = "SELECT * FROM `category` WHERE `category_id` = '$artcat'";
+        $queryusernames = mysqli_query($conn, $usernames);
+        $usernamesrows = mysqli_num_rows($queryusernames);
+        if ($usernamesrows >= 1) {
+            while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
+                $category = $fetchusernames['category_name'];
+            }
+        }
+        $checkartist = "SELECT * FROM `artist` WHERE `artist_id` = '$artistid'";
+        $queryartists = mysqli_query($conn, $checkartist);
+        $artistsrows = mysqli_num_rows($queryartists);
+        if ($artistsrows >= 1) {
+            while ($fetchartists = mysqli_fetch_assoc($queryartists)) {
+                $artistsname = $fetchartists['artist_name'];
+                $artistlocation = $fetchartists['artist_location'];
+            }
+        }
+    }
+   
+}
+?>
 <div class="left-side-bar">
 
     <div class="menu-block customscroll">
@@ -18,7 +54,7 @@
 
                     if (isset($_POST["registerartist"])) {
 
-                        require 'functions/add-artwork-validation.php';
+                        require 'functions/edit-artwork-validation.php';
                     }
                     ?>
                     <?php echo $message; ?>
@@ -64,7 +100,7 @@
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
                                         $aid = $fetch['category_id'];
-                                        $name = $fetch['category_name']; 
+                                        $name = $fetch['category_name'];
                                         echo "<option value='$aid'>$name</option>";
                                     }
                                 }
@@ -86,7 +122,7 @@
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
                                         $id = $fetch['artist_id'];
-                                        $names = $fetch['artist_name']; 
+                                        $names = $fetch['artist_name'];
                                         echo "<option value='$id'>$names</option>";
                                     }
                                 }
@@ -96,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class=" form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Artwork Decription</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea name="description" id="" cols="3" rows="3"
