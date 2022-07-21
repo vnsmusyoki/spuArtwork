@@ -1,39 +1,41 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $artwork_charges = $artwork_registration = $category_type = ''; ?>
+<?php echo $message = $description = $amount_paid = $transaction_code = $category_type = ''; ?>
 <?php
 include '../db-conection.php';
-$artworkid = $_GET['artwork'];
-$bookingplans = "SELECT * FROM `artwork` WHERE `artwork_id`='$artworkid'";
+$id = $_GET['payment'];
+$bookingplans = "SELECT * FROM `payment` WHERE  payment_id = '$id'";
 $querybookingsplans = mysqli_query($conn, $bookingplans);
 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
 if ($bookingsplansrows >= 1) {
     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-        $aid = $fetch['artwork_id'];
-        $artwork_registration = $fetch['artwork_reg'];
-        $type = $fetch['artwork_type'];
-        $artwork_charges = $fetch['artwork_charges'];
-        $description = $fetch['artwork_desc'];
-        $artcat = $fetch['artwork_cat_id'];
-        $artistid = $fetch['artwork_artist_id'];
-        $usernames = "SELECT * FROM `category` WHERE `category_id` = '$artcat'";
+        $aid = $fetch['payment_id'];
+        $date = $fetch['payment_date'];
+        $buildid = $fetch['payment_building_id'];
+        $userid = $fetch['payment_user_id'];
+        $amount_paid = $fetch['payment_amount'];
+        $transaction_code = $fetch['payment_code'];
+        $paymentmethod = $fetch['payment_mode'];
+        $usernames = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
         $queryusernames = mysqli_query($conn, $usernames);
         $usernamesrows = mysqli_num_rows($queryusernames);
         if ($usernamesrows >= 1) {
             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                $category = $fetchusernames['category_name'];
+                $username = $fetchusernames['user_full_names'];
+                $userphone = $fetchusernames['user_phone_number'];
+                $useridnumber = $fetchusernames['user_id_number'];
             }
         }
-        $checkartist = "SELECT * FROM `artist` WHERE `artist_id` = '$artistid'";
-        $queryartists = mysqli_query($conn, $checkartist);
-        $artistsrows = mysqli_num_rows($queryartists);
-        if ($artistsrows >= 1) {
-            while ($fetchartists = mysqli_fetch_assoc($queryartists)) {
-                $artistsname = $fetchartists['artist_name'];
-                $artistlocation = $fetchartists['artist_location'];
+        $buuildingcheck = "SELECT * FROM `building` WHERE `buidling_id` = '$buildid'";
+        $querybuildingscheck = mysqli_query($conn, $buuildingcheck);
+        $buildingscheckrows = mysqli_num_rows($querybuildingscheck);
+        if ($buildingscheckrows >= 1) {
+            while ($fetchbuilding = mysqli_fetch_assoc($querybuildingscheck)) {
+                $buildingname = $fetchbuilding['building_name'];
+                $location = $fetchbuilding['building_location'];
+                $rent = $fetchbuilding['building_rent'];
             }
         }
     }
-   
 }
 ?>
 <div class="left-side-bar">
@@ -54,96 +56,87 @@ if ($bookingsplansrows >= 1) {
 
                     if (isset($_POST["registerartist"])) {
 
-                        require 'functions/edit-artwork-validation.php';
+                        require 'functions/edit-transactions-validation.php';
                     }
                     ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Artwork </h3>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Registration</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="text" placeholder="Artwork Name"
-                                name="artwork_registration" value="<?php echo $artwork_registration; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Charges</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="number" min="100" placeholder="Artwork charges"
-                                name="artwork_charges" value="<?php echo $artwork_charges; ?>">
-                        </div>
+                        <h3>Edit Transaction Record </h3>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Category Registration</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Amount</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="category_type" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <option value="Category Type 1">Category Type 1</option>
-                                <option value="Category Type 2">Category Type 2</option>
-                            </select>
-
+                            <input class="form-control" type="number" min="100" placeholder="Amount Paid"
+                                name="amount_paid" value="<?php echo $amount_paid; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Category</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Code</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="artwork_category" id="" class="form-control">
+                            <input class="form-control" type="text" placeholder="POLKSHDKDKSNKDN"
+                                name="transaction_code" value="<?php echo $transaction_code; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Selected</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select name="building_selected" id="" class="form-control">
                                 <option value="">click to select</option>
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `category`";
+                                $bookingplans = "SELECT * FROM `building`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['category_id'];
-                                        $name = $fetch['category_name'];
+                                        $aid = $fetch['buidling_id'];
+                                        $name = $fetch['building_name'];
                                         echo "<option value='$aid'>$name</option>";
                                     }
                                 }
                                 ?>
                             </select>
-
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Artist</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">User </label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="artwork_artist" id="" class="form-control">
+                            <select name="user_name" id="" class="form-control">
                                 <option value="">click to select</option>
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `artist`";
+                                $bookingplans = "SELECT * FROM `user`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $id = $fetch['artist_id'];
-                                        $names = $fetch['artist_name'];
-                                        echo "<option value='$id'>$names</option>";
+                                        $aid = $fetch['user_id'];
+                                        $name = $fetch['user_full_names'];
+                                        echo "<option value='$aid'>$name</option>";
                                     }
                                 }
                                 ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Payment Mode</label>
+                        <div class="col-sm-12 col-md-10">
+                            <select name="payment_mode" id="" class="form-control">
+                                <option value="">click to select</option>
+                                <option value="M-Pesa">M-Pesa</option>
                             </select>
 
                         </div>
                     </div>
 
-                    <div class=" form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Decription</label>
-                        <div class="col-sm-12 col-md-10">
-                            <textarea name="description" id="" cols="3" rows="3"
-                                class="form-control"><?php echo $description; ?></textarea>
-                        </div>
-                    </div>
+
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-success">Register Art
-                                Category</button>
+                            <button type="submit" name="registerartist" class="btn btn-danger">Edit To Transactions
+                            </button>
                         </div>
                     </div>
 

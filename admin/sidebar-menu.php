@@ -20,36 +20,32 @@
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-library"></span><span class="mtext">Art Categories</span>
+                <span class="micon dw dw-library"></span><span class="mtext">Users</span>
             </a>
             <ul class="submenu">
-                <li><a href="add-art-category.php">Add Category</a></li>
-                <li><a href="manage-art-categories.php">Manage Art Categories</a></li>
+                <li><a href="add-user.php">Add User</a></li>
+                <li><a href="manage-art-categories.php">Manage Users</a></li>
                 <li><a href="print-art-categories.php">Generate Report</a></li>
             </ul>
         </li>
-        <li>
-            <a href="calendar.php" class="dropdown-toggle no-arrow">
-                <span class="micon dw dw-calendar1"></span><span class="mtext">Calendar</span>
-            </a>
-        </li>
+
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-apartment"></span><span class="mtext"> Art Work</span>
+                <span class="micon dw dw-apartment"></span><span class="mtext"> Buildings</span>
             </a>
             <ul class="submenu">
-                <li><a href="add-artwork.php">Add ArtWork</a></li>
-                <li><a href="manage-artwork.php">Manage Art Work</a></li>
-                <li><a href="print-artworks.php">Generate Report</a></li>
+                <li><a href="add-building.php">Add Building</a></li>
+                <li><a href="manage-buildings.php">Manage Buildings</a></li>
+                <li><a href="print-buildings.php">Generate Report</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">
-                <span class="micon dw dw-paint-brush"></span><span class="mtext">CUstomers</span>
+                <span class="micon dw dw-paint-brush"></span><span class="mtext">Visits</span>
             </a>
             <ul class="submenu">
-                <li><a href="add-customer.php">Add Customer</a></li>
-                <li><a href="manage-customers.php">Manage Customers</a></li>
+                <li><a href="add-visit.php">Add Visit</a></li>
+                <li><a href="manage-visits.php">Manage Visits</a></li>
                 <li><a href="print-customers.php">Generate Report</a></li>
             </ul>
         </li>

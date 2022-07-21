@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>Admin Dashboard</title>
+    <title>Admin Manage Payments Dashboard</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png">
@@ -38,40 +38,7 @@
             <div class="menu-icon dw dw-menu"></div>
             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
             <div class="header-search">
-                <form>
-                    <div class="form-group mb-0">
-                        <i class="dw dw-search2 search-icon"></i>
-                        <input type="text" class="form-control search-input" placeholder="Search Here">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-                                <i class="ion-arrow-down-c"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">From</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control form-control-sm form-control-line" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">To</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control form-control-sm form-control-line" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
-                                    <div class="col-sm-12 col-md-10">
-                                        <input class="form-control form-control-sm form-control-line" type="text">
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+
             </div>
         </div>
         <div class="header-right">
@@ -124,16 +91,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Registered Customers</h4>
+                        <h4 class="text-blue h4">All Transactions Made</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Name</th>
-                                    <th>Email Address</th>
-                                    <th>Residence</th>
+                                    <th class="table-plus datatable-nosort">Visitor</th>
                                     <th>Phone Number</th>
+                                    <th>Building</th>
+                                    <th>Location</th>
+                                    <th>Amount Paid</th>
+                                    <th>Date Paid</th>
+                                    <th>Transacode Code</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -143,35 +113,53 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `customer`";
+                                $bookingplans = "SELECT * FROM `payment`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['customer_id'];
-                                        $name = $fetch['customer_name'];
-                                        $location = $fetch['customer_location'];
-                                        $description = $fetch['customer_phone_number'];
-                                        $email = $fetch['customer_email'];
-
-                                        // $usernames = "SELECT * FROM `login` WHERE `login_artist_id` = '$aid'";
-                                        // $queryusernames = mysqli_query($conn, $usernames);
-                                        // $usernamesrows = mysqli_num_rows($queryusernames);
-                                        // if ($usernamesrows >= 1) {
-                                        //     while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                        //         $username = $fetchusernames['login_username'];
-                                        //     }
-                                        // }
+                                        $aid = $fetch['payment_id'];
+                                        $date = $fetch['payment_date'];
+                                        $buildid = $fetch['payment_building_id'];
+                                        $userid = $fetch['payment_user_id']; 
+                                        $amount = $fetch['payment_amount'];
+                                        $transacode = $fetch['payment_code'];
+                                        $paymentmethod = $fetch['payment_mode'];
+                                        $usernames = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
+                                        $queryusernames = mysqli_query($conn, $usernames);
+                                        $usernamesrows = mysqli_num_rows($queryusernames);
+                                        if ($usernamesrows >= 1) {
+                                            while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
+                                                $username = $fetchusernames['user_full_names'];
+                                                $userphone = $fetchusernames['user_phone_number'];
+                                                $useridnumber = $fetchusernames['user_id_number'];
+                                            }
+                                        }
+                                        $buuildingcheck = "SELECT * FROM `building` WHERE `buidling_id` = '$buildid'";
+                                        $querybuildingscheck = mysqli_query($conn, $buuildingcheck);
+                                        $buildingscheckrows = mysqli_num_rows($querybuildingscheck);
+                                        if ($buildingscheckrows >= 1) {
+                                            while ($fetchbuilding = mysqli_fetch_assoc($querybuildingscheck)) {
+                                                $buildingname = $fetchbuilding['building_name'];
+                                                $location = $fetchbuilding['building_location'];
+                                                $rent = $fetchbuilding['building_rent'];
+                                            }
+                                        }
+                                        
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>$name</td>
-                                    <td>$email</td>
-                                    <td>$location</td>
-                                    <td>$description </td>  
+                                    <td class='table-plus'>$username
+                                       </td>
+                                    <td>$userphone</td> 
+                                    <td>$buildingname </td> 
+                                    <td>$location</td> 
+                                    <td>Kshs. $amount</td>
+                                    <td>$date</td> 
+                                    <td style='text-transform:uppercase;'>$transacode</td> 
                                     <td>
-                                    <a href='edit-customer.php?customer=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-customer.php?customer=$aid' class='btn btn-sm btn-danger'>Delete</a>
+                                    <a href='edit-payment.php?payment=$aid' class='btn btn-sm btn-warning'>Edit</a>
+                                    <a href='delete-payment.php?payment=$aid' class='btn btn-sm btn-danger'>Delete</a>
                                     </td>
                                 </tr>";
                                     }

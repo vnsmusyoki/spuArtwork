@@ -1,32 +1,32 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message  = $full_names = $residence = $password = $username = $email= $phone_number=''; ?>
+<?php echo $message = $description = $full_names = $gender = $id_number = $password = $username = $email = $phone_number = ''; ?>
 <?php
 include '../db-conection.php';
-$id = $_GET['customer'];
-$bookingplans = "SELECT * FROM `customer` WHERE `customer_id` = '$id'";
+$userid = $_GET['user'];
+$bookingplans = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
 $querybookingsplans = mysqli_query($conn, $bookingplans);
 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
 if ($bookingsplansrows >= 1) {
     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-        $aid = $fetch['customer_id'];
-        $full_names = $fetch['customer_name'];
-        $email = $fetch['customer_email'];
-        $phone_number = $fetch['customer_phone_number'];
-        $residence = $fetch['customer_location'];
-
-        $usernames = "SELECT * FROM `login` WHERE `login_artist_id` = '$aid'";
+        $aid = $fetch['user_id'];
+        $full_names = $fetch['user_full_names'];
+        $email = $fetch['user_email'];
+        $phone = $fetch['user_phone_number'];
+        $gender = $fetch['user_gender'];
+        $description = $fetch['user_home_address'];
+        $id_number = $fetch['user_id_number'];
+        $phone_number = $fetch['user_phone_number'];
+        $usernames = "SELECT * FROM `login` WHERE `login_user_id` = '$aid'";
         $queryusernames = mysqli_query($conn, $usernames);
         $usernamesrows = mysqli_num_rows($queryusernames);
         if ($usernamesrows >= 1) {
             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                $globalusername = $fetchusernames['login_username'];
-                global $globalusername;
+                $username = $fetchusernames['login_username'];
             }
         }
-
-      global $globalname; global $globalemailaddress; global $globaldescription; global $globallocation; global $globalusername;
     }
 }
+
 ?>
 <div class="left-side-bar">
 
@@ -44,14 +44,14 @@ if ($bookingsplansrows >= 1) {
                     enctype="multipart/form-data">
                     <?php
 
-                                        if (isset($_POST["registerartist"])) {
+                    if (isset($_POST["registerartist"])) {
 
-                                            require 'functions/edit-customer-validation.php';
-                                        }
-                                        ?>
+                        require 'functions/edit-user-validation.php';
+                    }
+                    ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add New Customer</h3>
+                        <h3>Add Agent</h3>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Full Names</label>
@@ -68,26 +68,28 @@ if ($bookingsplansrows >= 1) {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Residence</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Gender</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="Write the artist location here" type="text"
-                                name="residence" value="<?php echo $residence; ?>">
+                            <select name="gender" class="form-control" id="">
+                                <option value="">Click to Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
 
-
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Password</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="password" type="password" name="password"
-                                value="<?php echo $password; ?>">
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Phone Number</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" placeholder="0788992200" type="number" name="phone_number"
+                            <input class="form-control" placeholder="0788992233" type="number" name="phone_number"
                                 value="<?php echo $phone_number; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">ID Number</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" placeholder="88992233" type="number" name="id_number"
+                                value="<?php echo $id_number; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -98,12 +100,18 @@ if ($bookingsplansrows >= 1) {
                         </div>
                     </div>
 
-
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Home Address</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea name="description" id="" cols="3" rows="3"
+                                class="form-control"><?php echo $description; ?></textarea>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-danger">Update Customer
-                                Details</button>
+                            <button type="submit" name="registerartist" class="btn btn-success">Update
+                                User</button>
                         </div>
                     </div>
 

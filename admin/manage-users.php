@@ -124,19 +124,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Artworks</h4>
+                        <h4 class="text-blue h4">All Registered users</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Artwork</th>
-                                    <th>Type</th>
-                                    <th>Category</th>
-                                    <th>Pricing</th>
-                                    <th>Description</th>
-                                    <th>Artist</th>
-                                    <th>Artist Location</th>
+                                    <th class="table-plus datatable-nosort">Name</th>
+                                    <th>Email Address</th>
+                                    <th>Residence</th>
+                                    <th>Gender</th>
+                                    <th>Phone Number</th>
+                                    <th>Username</th>
+                                    <th>ID Number</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -146,54 +146,44 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `artwork`";
+                                $bookingplans = "SELECT * FROM `user`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['artwork_id'];
-                                        $reg = $fetch['artwork_reg'];
-                                        $type = $fetch['artwork_type'];
-                                        $charges = $fetch['artwork_charges'];
-                                        $desc = $fetch['artwork_desc'];
-                                        $artcat = $fetch['artwork_cat_id'];
-                                        $artistid = $fetch['artwork_artist_id'];
-                                        $usernames = "SELECT * FROM `category` WHERE `category_id` = '$artcat'";
+                                        $aid = $fetch['user_id'];
+                                        $name = $fetch['user_full_names'];
+                                        $emailaddress = $fetch['user_email'];
+                                        $phone = $fetch['user_phone_number'];
+                                        $gender = $fetch['user_gender'];
+                                        $home = $fetch['user_home_address'];
+                                        $idnumber = $fetch['user_id_number'];
+                                        $usernames = "SELECT * FROM `login` WHERE `login_user_id` = '$aid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $category = $fetchusernames['category_name'];
-                                            }
-                                        }
-                                        $checkartist = "SELECT * FROM `artist` WHERE `artist_id` = '$artistid'";
-                                        $queryartists = mysqli_query($conn, $checkartist);
-                                        $artistsrows = mysqli_num_rows($queryartists);
-                                        if ($artistsrows >= 1) {
-                                            while ($fetchartists = mysqli_fetch_assoc($queryartists)) {
-                                                $artistsname = $fetchartists['artist_name'];
-                                                $artistlocation = $fetchartists['artist_location'];
+                                                $username = $fetchusernames['login_username'];
                                             }
                                         }
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>$reg</td>
-                                    <td>$type</td>
-                                    <td>$category</td>
-                                    <td>Ksh. $charges </td> 
-                                    <td>$desc</td>
-                                     <td>$artistsname</td>
-                                     <td>$artistlocation</td>
+                                    <td class='table-plus'>$name</td>
+                                    <td>$emailaddress</td>
+                                    <td>$home</td>
+                                    <td>$gender </td> 
+                                    <td>$phone</td>
+                                    <td>$username</td>
+                                    <td>$idnumber</td>
                                     <td>
-                                    <a href='edit-artwork.php?artwork=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-artwork.php?artwork=$aid' class='btn btn-sm btn-danger'>Delete</a>
+                                    <a href='edit-user.php?user=$aid' class='btn btn-sm btn-warning'>Edit</a>
+                                    <a href='delete-user.php?user=$aid' class='btn btn-sm btn-danger'>Delete</a>
                                     </td>
                                 </tr>";
                                     }
                                 }
                                 ?>
-
                             </tbody>
                         </table>
                     </div>

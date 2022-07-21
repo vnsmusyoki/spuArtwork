@@ -1,5 +1,5 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $amount_paid = $transaction_code = $category_type = ''; ?>
+<?php echo $message = $description = $artwork_charges = $building_name =$location= ''; ?>
 <div class="left-side-bar">
 
     <div class="menu-block customscroll">
@@ -18,86 +18,77 @@
 
                     if (isset($_POST["registerartist"])) {
 
-                        require 'functions/add-transactions-validation.php';
+                        require 'functions/add-building-validation.php';
                     }
                     ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Transaction Record </h3>
+                        <h3>Add Building </h3>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Registration</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="Building Name" name="building_name"
+                                value="<?php echo $building_name; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Rent Charges</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="number" min="100" placeholder="8000"
+                                name="building_charges" value="<?php echo $building_charges; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Image</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="file" name="building_image"
+                                value="<?php echo $building_image; ?>">
+                        </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payment Amount</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Agent</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="number" min="100" placeholder="Amount Paid"
-                                name="amount_paid" value="<?php echo $amount_paid; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payment Code</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="text" placeholder="POLKSHDKDKSNKDN"
-                                name="transaction_code" value="<?php echo $transaction_code; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Building Selected</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select name="building_selected" id="" class="form-control">
+                            <select name="building_agent" id="" class="form-control">
                                 <option value="">click to select</option>
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `building`";
+                                $bookingplans = "SELECT * FROM `agent`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['buidling_id'];
-                                        $name = $fetch['building_name'];
+                                        $aid = $fetch['agent_id'];
+                                        $name = $fetch['agent_full_names']; 
                                         echo "<option value='$aid'>$name</option>";
                                     }
                                 }
                                 ?>
                             </select>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Location</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea name="location" id="" cols="3" rows="3"
+                                class="form-control"><?php echo $location; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">User </label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Building Decription</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="user_name" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <?php
-                                include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `user`";
-                                $querybookingsplans = mysqli_query($conn, $bookingplans);
-                                $bookingsplansrows = mysqli_num_rows($querybookingsplans);
-                                if ($bookingsplansrows >= 1) {
-                                    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['user_id'];
-                                        $name = $fetch['user_full_names'];
-                                        echo "<option value='$aid'>$name</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
+                            <textarea name="description" id="" cols="1" rows="1"
+                                class="form-control"><?php echo $description; ?></textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Payment Mode</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select name="payment_mode" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <option value="M-Pesa">M-Pesa</option>
-                            </select>
-
-                        </div>
-                    </div>
-
-
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-success">Add To Transactions
+                            <button type="submit" name="registerartist" class="btn btn-success">Register New Building
                             </button>
                         </div>
                     </div>

@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
 </head>
 
 <body>
@@ -123,19 +124,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Artists</h4>
+                        <h4 class="text-blue h4">Generate Buildings Report</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th>Avatar</th>
-                                    <th class="table-plus datatable-nosort">Name</th>
-
-                                    <th>Email Address</th>
-                                    <th>Residence</th>
+                                    <th class="table-plus datatable-nosort">Image</th>
+                                    <th>Building</th>
+                                    <th>Rent</th>
+                                    <th>Location</th>
                                     <th>Description</th>
-                                    <th>Username</th>
+                                    <th>Agent</th>
+                                    <th>Phone Number</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,36 +145,41 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `artist`";
+                                $bookingplans = "SELECT * FROM `building`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['artist_id'];
-                                        $image = $fetch['artist_image'];
-                                        $name = $fetch['artist_name'];
-                                        $emailaddress = $fetch['artist_email'];
-                                        $description = $fetch['artist_desc'];
-                                        $location = $fetch['artist_location'];
-
-                                        $usernames = "SELECT * FROM `login` WHERE `login_artist_id` = '$aid'";
+                                        $aid = $fetch['buidling_id'];
+                                        $name = $fetch['building_name'];
+                                        $description = $fetch['buidling_description'];
+                                        $rent = $fetch['building_rent'];
+                                        $images = $fetch['building_images'];
+                                        $location = $fetch['building_location'];
+                                        $agentid = $fetch['building_agent_id'];
+                                        $usernames = "SELECT * FROM `agent` WHERE `agent_id` = '$agentid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $username = $fetchusernames['login_username'];
+                                                $agentname = $fetchusernames['agent_full_names'];
+                                                $agentphone = $fetchusernames['agent_phone_number'];
                                             }
                                         }
+                                        
 
                                         echo "
                                 <tr>
-                                <td><img src='../artists/$image' alt='user' class='img-circle'></td>
-                                    <td class='table-plus'>$name</td>
-                                    <td>$emailaddress</td>
-                                    <td>$location</td>
-                                    <td>$description </td> 
-                                    <td>$username</td>
-                                     
+                                    <td class='table-plus'>
+                                    <img src='../buildings/$images' alt='Building' class='img-fluid' style='width:100px;height:100px;'>
+                                    </td>
+                                    <td>$name</td>
+                                    <td>Kshs. $rent</td>
+                                    <td>$location </td> 
+                                    <td>$description</td> 
+                                    <td>$agentname</td>
+                                    <td>$agentphone</td>
+                                    
                                 </tr>";
                                     }
                                 }
@@ -188,7 +194,6 @@
 
         </div>
     </div>
-    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
     <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>

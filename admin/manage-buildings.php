@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
 </head>
 
 <body>
@@ -123,15 +124,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Art Category </h4>
+                        <h4 class="text-blue h4">All Artworks</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Category</th>
-                                    <th>Registration</th>
+                                    <th class="table-plus datatable-nosort">Image</th>
+                                    <th>Building</th>
+                                    <th>Rent</th>
+                                    <th>Location</th>
                                     <th>Description</th>
+                                    <th>Agent</th>
+                                    <th>Phone Number</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -141,26 +146,43 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `category`";
+                                $bookingplans = "SELECT * FROM `building`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['category_id'];
-                                        $name = $fetch['category_name'];
-                                        $reg = $fetch['category_reg'];
-                                        $description = $fetch['category_desc']; 
-
-                                       
+                                        $aid = $fetch['buidling_id'];
+                                        $name = $fetch['building_name'];
+                                        $description = $fetch['buidling_description'];
+                                        $rent = $fetch['building_rent'];
+                                        $images = $fetch['building_images'];
+                                        $location = $fetch['building_location'];
+                                        $agentid = $fetch['building_agent_id'];
+                                        $usernames = "SELECT * FROM `agent` WHERE `agent_id` = '$agentid'";
+                                        $queryusernames = mysqli_query($conn, $usernames);
+                                        $usernamesrows = mysqli_num_rows($queryusernames);
+                                        if ($usernamesrows >= 1) {
+                                            while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
+                                                $agentname = $fetchusernames['agent_full_names'];
+                                                $agentphone = $fetchusernames['agent_phone_number'];
+                                            }
+                                        }
+                                        
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>$name</td>
-                                    <td>$reg</td> 
-                                    <td>$description </td>  
+                                    <td class='table-plus'>
+                                    <img src='../buildings/$images' alt='Building' class='img-fluid' style='width:100px;height:100px;'>
+                                    </td>
+                                    <td>$name</td>
+                                    <td>Kshs. $rent</td>
+                                    <td>$location </td> 
+                                    <td>$description</td> 
+                                    <td>$agentname</td>
+                                    <td>$agentphone</td>
                                     <td>
-                                    <a href='edit-art-category.php?art=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-art-category.php?art=$aid' class='btn btn-sm btn-danger'>Delete</a>
+                                    <a href='edit-building.php?building=$aid' class='btn btn-sm btn-warning'>Edit</a>
+                                    <a href='delete-building.php?building=$aid' class='btn btn-sm btn-danger'>Delete</a>
                                     </td>
                                 </tr>";
                                     }
@@ -176,7 +198,7 @@
 
         </div>
     </div>
-    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
+
     <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>

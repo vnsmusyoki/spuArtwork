@@ -22,26 +22,18 @@ toastr.error('Please Provide all the details');
 toastr.error('Amount paid has incorrect format');
 </script>
 ";
-}elseif ($transcodelength !== 11) {
+} elseif ($transcodelength !== 11) {
     $message = "
     <script>
         toastr.error('transaction code field must have 11 digits');
     </script>";
 } else {
 
-    $checkemail = "SELECT * FROM `payment` WHERE `payment_code` = '$transactioncode'";
-    $queryemail = mysqli_query($conn, $checkemail);
-    $checkemailrows = mysqli_num_rows($queryemail);
-    if ($checkemailrows >= 1) {
-        $message = "
-    <script>
-    toastr.error('transaction code has already been recorded .');
-    </script>";
-    } else {
 
-    $sql = "INSERT INTO `payment`(`payment_amount`, `payment_mode`, `payment_code`,`payment_building_id`, `payment_user_id`) VALUES ('$amount','$paymentmode','$transactioncode','$building', '$customer')";
+    $id = $_GET['payment'];
+    $sql = "UPDATE `payment` SET `payment_amount`='$amount', `payment_mode`='$paymentmode', `payment_code`='$transactioncode',`payment_building_id`='$building', `payment_user_id`='$customer' WHERE `payment_id`='$id'";
     $result = mysqli_query($conn, $sql);
-    
+
     if ($result) {
 
         $message = "
@@ -57,5 +49,4 @@ toastr.error('Amount paid has incorrect format');
                                     toastr.error('Registration Failed. Please try again.');
                                     </script>";
     }
-}
 }

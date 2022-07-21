@@ -1,5 +1,5 @@
 <?php include 'top-bar.php'; ?>
-<?php echo $message = $description = $artwork_charges = $artwork_registration =$category_type= ''; ?>
+<?php echo $message = $description = $full_names = $gender = $id_number=$password = $username = $email = $phone_number = ''; ?>
 <div class="left-side-bar">
 
     <div class="menu-block customscroll">
@@ -18,86 +18,68 @@
 
                     if (isset($_POST["registerartist"])) {
 
-                        require 'functions/add-artwork-validation.php';
+                        require 'functions/add-user-validation.php';
                     }
                     ?>
                     <?php echo $message; ?>
                     <div class="mt-4 mb-4">
-                        <h3>Add Artwork </h3>
+                        <h3>Add Agent</h3>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Registration</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Full Names</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="text" placeholder="Artwork Name"
-                                name="artwork_registration" value="<?php echo $artwork_registration; ?>">
+                            <input class="form-control" type="text" placeholder="Johnny Brown" name="full_names"
+                                value="<?php echo $full_names; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Charges</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Email Address</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="number" min="100" placeholder="Artwork charges"
-                                name="artwork_charges" value="<?php echo $artwork_charges; ?>">
+                            <input class="form-control" placeholder="validemail@gmail.com" type="email" name="email"
+                                value="<?php echo $email; ?>">
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Category Registration</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Gender</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="category_type" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <option value="Category Type 1">Category Type 1</option>
-                                <option value="Category Type 2">Category Type 2</option>
+                            <select name="gender" class="form-control" id="">
+                                <option value="">Click to Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
-
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Category</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Password</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="artwork_category" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <?php
-                                include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `category`";
-                                $querybookingsplans = mysqli_query($conn, $bookingplans);
-                                $bookingsplansrows = mysqli_num_rows($querybookingsplans);
-                                if ($bookingsplansrows >= 1) {
-                                    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['category_id'];
-                                        $name = $fetch['category_name']; 
-                                        echo "<option value='$aid'>$name</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-
+                            <input class="form-control" placeholder="password" type="password" name="password"
+                                value="<?php echo $password; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Artist</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Phone Number</label>
                         <div class="col-sm-12 col-md-10">
-                            <select name="artwork_artist" id="" class="form-control">
-                                <option value="">click to select</option>
-                                <?php
-                                include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `artist`";
-                                $querybookingsplans = mysqli_query($conn, $bookingplans);
-                                $bookingsplansrows = mysqli_num_rows($querybookingsplans);
-                                if ($bookingsplansrows >= 1) {
-                                    while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $id = $fetch['artist_id'];
-                                        $names = $fetch['artist_name']; 
-                                        echo "<option value='$id'>$names</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-
+                            <input class="form-control" placeholder="0788992233" type="number" name="phone_number"
+                                value="<?php echo $phone_number; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">ID Number</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" placeholder="88992233" type="number" name="id_number"
+                                value="<?php echo $id_number; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Username</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" placeholder="johndoe" type="text" name="username"
+                                value="<?php echo $username; ?>">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Artwork Decription</label>
+                        <label class="col-sm-12 col-md-2 col-form-label">Home Address</label>
                         <div class="col-sm-12 col-md-10">
                             <textarea name="description" id="" cols="3" rows="3"
                                 class="form-control"><?php echo $description; ?></textarea>
@@ -106,8 +88,8 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"></label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" name="registerartist" class="btn btn-success">Register Art
-                                Category</button>
+                            <button type="submit" name="registerartist" class="btn btn-success">Register New
+                                Agent</button>
                         </div>
                     </div>
 

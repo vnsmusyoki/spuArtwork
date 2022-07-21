@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
 </head>
 
 <body>
@@ -123,46 +124,59 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Art Category </h4>
+                        <h4 class="text-blue h4">Generate Report of Registered users</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Category</th>
-                                    <th>Registration</th>
-                                    <th>Description</th>
+                                    <th class="table-plus datatable-nosort">Name</th>
+                                    <th>Email Address</th>
+                                    <th>Residence</th>
+                                    <th>Gender</th>
+                                    <th>Phone Number</th>
+                                    <th>Username</th>
+                                    <th>ID Number</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-
-
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `category`";
+                                $bookingplans = "SELECT * FROM `user`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['category_id'];
-                                        $name = $fetch['category_name'];
-                                        $reg = $fetch['category_reg'];
-                                        $description = $fetch['category_desc'];
-
-
+                                        $aid = $fetch['user_id'];
+                                        $name = $fetch['user_full_names'];
+                                        $emailaddress = $fetch['user_email'];
+                                        $phone = $fetch['user_phone_number'];
+                                        $gender = $fetch['user_gender'];
+                                        $home = $fetch['user_home_address'];
+                                        $idnumber = $fetch['user_id_number'];
+                                        $usernames = "SELECT * FROM `login` WHERE `login_user_id` = '$aid'";
+                                        $queryusernames = mysqli_query($conn, $usernames);
+                                        $usernamesrows = mysqli_num_rows($queryusernames);
+                                        if ($usernamesrows >= 1) {
+                                            while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
+                                                $username = $fetchusernames['login_username'];
+                                            }
+                                        }
 
                                         echo "
                                 <tr>
                                     <td class='table-plus'>$name</td>
-                                    <td>$reg</td> 
-                                    <td>$description </td>  
-                                     
+                                    <td>$emailaddress</td>
+                                    <td>$home</td>
+                                    <td>$gender </td> 
+                                    <td>$phone</td>
+                                    <td>$username</td>
+                                    <td>$idnumber</td>
+                                  
                                 </tr>";
                                     }
                                 }
                                 ?>
-
                             </tbody>
                         </table>
                     </div>
@@ -172,7 +186,7 @@
 
         </div>
     </div>
-    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
+
     <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>

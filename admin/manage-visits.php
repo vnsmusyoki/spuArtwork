@@ -4,7 +4,7 @@
 <head>
     <!-- Basic Page Info -->
     <meta charset="utf-8">
-    <title>Admin Dashboard</title>
+    <title>DeskApp Dashboard</title>
 
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png">
@@ -28,7 +28,6 @@
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css">
-    <!-- js -->
 </head>
 
 <body>
@@ -125,18 +124,19 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 class="text-blue h4">All Transactions</h4>
+                        <h4 class="text-blue h4">All Booked Visits</h4>
                     </div>
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Customer</th>
+                                    <th class="table-plus datatable-nosort">Visitor</th>
                                     <th>Phone Number</th>
-                                    <th>Artwork</th>
-                                    <th>Asking Price</th>
-                                    <th>Selling Price</th>
-                                    <th>Transaction Date</th>
+                                    <th>ID Number</th>
+                                    <th>Building</th>
+                                    <th>Location</th>
+                                    <th>Rent</th>
+                                    <th>Date Visiting</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -146,46 +146,50 @@
 
                                 <?php
                                 include '../db-conection.php';
-                                $bookingplans = "SELECT * FROM `transaction`";
+                                $bookingplans = "SELECT * FROM `book_visits`";
                                 $querybookingsplans = mysqli_query($conn, $bookingplans);
                                 $bookingsplansrows = mysqli_num_rows($querybookingsplans);
                                 if ($bookingsplansrows >= 1) {
                                     while ($fetch  = mysqli_fetch_assoc($querybookingsplans)) {
-                                        $aid = $fetch['transaction_id'];
-                                        $purchasedate = $fetch['transaction_purchase_date'];
-                                        $sellingprice = $fetch['transaction_sale_price'];
-                                        $askingprice = $fetch['transaction_asking_price'];
-                                        $artworkid = $fetch['transaction_artwork_id'];
-                                        $customerid = $fetch['transaction_customer_id'];
-                                        $usernames = "SELECT * FROM `artwork` WHERE `artwork_id` = '$artworkid'";
+                                        $aid = $fetch['visit_id'];
+                                        $date = $fetch['visit_date'];
+                                        $buildid = $fetch['visit_building_id'];
+                                        $userid = $fetch['visit_user_id']; 
+                                        $usernames = "SELECT * FROM `user` WHERE `user_id` = '$userid'";
                                         $queryusernames = mysqli_query($conn, $usernames);
                                         $usernamesrows = mysqli_num_rows($queryusernames);
                                         if ($usernamesrows >= 1) {
                                             while ($fetchusernames = mysqli_fetch_assoc($queryusernames)) {
-                                                $artworkreg = $fetchusernames['artwork_reg'];
+                                                $username = $fetchusernames['user_full_names'];
+                                                $userphone = $fetchusernames['user_phone_number'];
+                                                $useridnumber = $fetchusernames['user_id_number'];
                                             }
                                         }
-                                       $customersc = "SELECT * FROM `customer` WHERE `customer_id` = '$customerid'";
-                                        $querycustomersc = mysqli_query($conn, $customersc);
-                                        $customercrows = mysqli_num_rows($querycustomersc);
-                                        if ($customercrows >= 1) {
-                                            while ($fetchcustomercrows = mysqli_fetch_assoc($querycustomersc)) {
-                                                $customername = $fetchcustomercrows['customer_name'];
-                                                $customerphonenumber = $fetchcustomercrows['customer_phone_number'];
+                                        $buuildingcheck = "SELECT * FROM `building` WHERE `buidling_id` = '$buildid'";
+                                        $querybuildingscheck = mysqli_query($conn, $buuildingcheck);
+                                        $buildingscheckrows = mysqli_num_rows($querybuildingscheck);
+                                        if ($buildingscheckrows >= 1) {
+                                            while ($fetchbuilding = mysqli_fetch_assoc($querybuildingscheck)) {
+                                                $buildingname = $fetchbuilding['building_name'];
+                                                $location = $fetchbuilding['building_location'];
+                                                $rent = $fetchbuilding['building_rent'];
                                             }
                                         }
+                                        
 
                                         echo "
                                 <tr>
-                                    <td class='table-plus'>$customername</td>
-                                    <td>$customerphonenumber</td>
-                                    <td>$artworkreg</td>
-                                    <td>Kshs. $sellingprice </td> 
-                                    <td>Kshs. $askingprice</td>
-                                    <td>$purchasedate</td>
+                                    <td class='table-plus'>$username
+                                       </td>
+                                    <td>$userphone</td>
+                                    <td>$useridnumber</td>
+                                    <td>$buildingname </td> 
+                                    <td>$location</td> 
+                                    <td>Kshs. $rent</td>
+                                    <td>$date</td> 
                                     <td>
-                                    <a href='edit-transaction.php?artist=$aid' class='btn btn-sm btn-warning'>Edit</a>
-                                    <a href='delete-artist.php?artist=$aid' class='btn btn-sm btn-danger'>Delete</a>
+                                    <a href='edit-visit.php?visit=$aid' class='btn btn-sm btn-warning'>Edit</a>
+                                    <a href='delete-visit.php?visit=$aid' class='btn btn-sm btn-danger'>Delete</a>
                                     </td>
                                 </tr>";
                                     }
@@ -201,7 +205,7 @@
 
         </div>
     </div>
-
+    <!-- js -->
     <script src="admin/vendors/scripts/core.js"></script>
     <script src="admin/vendors/scripts/script.min.js"></script>
     <script src="admin/vendors/scripts/process.js"></script>
